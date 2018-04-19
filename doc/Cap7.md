@@ -6,7 +6,7 @@ En las aplicaciones GluePHP los *assets* se definen tanto en la clase de la apli
 
 >En esta versión todavía no se encuentra soportada la gestión dinámica de *assets* lo que quiere decir que después de la carga de la página no se añadirá ningún nuevo *asset* aunque se inserte en la misma algún nuevo componente con dependencias a *assets* que no se encuentren cargados.
 
-GluePHP trata a los *assets* como objetos donde sus respectivas clases serán hijas de la clase `Andaniel05\ComposedViews\Asset\AbstractAsset`. De esta manera, todas las instancias contarán con un identificador y un mecanismo para soportar dependencias y grupos. Además, teniendo en cuenta que los *assets* se necesitan imprimir en la página y que por lo general su vista solo se compone de un único elemento HTML, esta clase desciende de la clase `Andaniel05\ComposedViews\HtmlElement\HtmlElement` para generar la vista del *asset*. De esta manera el usuario podrá editar los atributos del elemento si lo desea. Teniendo en cuenta además que por lo general cada *asset* solo se imprime una única vez en la página, contarán con una bandera para indicar si el mismo ya ha sido impreso o no.
+GluePHP trata a los *assets* como objetos donde sus respectivas clases serán hijas de la clase `GlueApps\ComposedViews\Asset\AbstractAsset`. De esta manera, todas las instancias contarán con un identificador y un mecanismo para soportar dependencias y grupos. Además, teniendo en cuenta que los *assets* se necesitan imprimir en la página y que por lo general su vista solo se compone de un único elemento HTML, esta clase desciende de la clase `GlueApps\ComposedViews\HtmlElement\HtmlElement` para generar la vista del *asset*. De esta manera el usuario podrá editar los atributos del elemento si lo desea. Teniendo en cuenta además que por lo general cada *asset* solo se imprime una única vez en la página, contarán con una bandera para indicar si el mismo ya ha sido impreso o no.
 
 ## 1. Imprimiendo los assets. ##
 
@@ -14,7 +14,7 @@ Como los *assets* forman parte del código HTML o vistas de las páginas, será 
 
 Para imprimir todos los *assets* de un grupo existe el método `renderAssets(?string $groups = null, bool $filterUnused = true, bool $markUsage = true): string`. Como puede ver, el método acepta varios argumentos opcionales ya que presentan valores por defecto. Con el primer argumento `$groups` indica que se deben imprimir solo los *assets* que pertenezcan a los grupos separados por espacios. En el caso de que su valor sea nulo se imprimirán todos los *assets* sin importan los grupos a los que pertenezcan. Cuando el argumento `$filterUnused` sea verdadero se indicará que solo se imprimirán los *assets* que no hayan sido impresos todavía y en el caso de que su valor sea falso significa que su uso no se tendrá en cuenta. Cuando el argumento `$markUsage` sea verdadero todos los *assets* que se impriman serán marcados como usados. Es muy importante destacar que esta función imprimirá los *assets* de forma ordenada por lo que tendrá en cuenta sus dependencias. Cuando un *asset* depende de otro será impreso después de su dependencia.
 
-Otro método del que se dispone para la impresión de *assets* es `renderAsset(string $assetId, bool $required = true, bool $markUsage = true): string`. El mismo sirve para imprimir un único *asset* especificando su identificador. Cuando el argumento `$required` sea verdadero se lanzará una excepción del tipo `Andaniel05\ComposedViews\Exception\AssetNotFoundException` en el caso de que no exista ningún *asset* con el identificador especificado. De igual forma el argumento `$markUsage` sirve para marcar o no su uso después de su impresión.
+Otro método del que se dispone para la impresión de *assets* es `renderAsset(string $assetId, bool $required = true, bool $markUsage = true): string`. El mismo sirve para imprimir un único *asset* especificando su identificador. Cuando el argumento `$required` sea verdadero se lanzará una excepción del tipo `GlueApps\ComposedViews\Exception\AssetNotFoundException` en el caso de que no exista ningún *asset* con el identificador especificado. De igual forma el argumento `$markUsage` sirve para marcar o no su uso después de su impresión.
 
 ## 2. Declarando assets. ##
 
@@ -22,10 +22,10 @@ Para declarar *assets* tanto en la clase de la aplicación como en la de los com
 
 Para soportar los tipos de *assets* más comunes existen predefinidas una serie de clases que han sido diseñadas de forma tal que a través de sus constructores se les pueda proporcionar los datos necesarios por orden de importancia. El primer argumento se va a corresponder siempre con el identificador del *asset*. El segundo con los datos del tipo correspondiente ya sea una URI o un fragmento de código JavaScript o CSS. El tercero y cuarto serán opcionales y especificarán las dependencias y grupos respectivamente mediante un `string` donde se interpretarán múltiples valores separados por espacios. Es importante mencionar que todas las clases predefinidas pertenecen a uno o varios grupos por defecto.
 
-En el siguiente ejemplo se han declarado *assets* de los tipos `Andaniel05\ComposedViews\Asset\{StyleAsset, ScriptAsset}`.
+En el siguiente ejemplo se han declarado *assets* de los tipos `GlueApps\ComposedViews\Asset\{StyleAsset, ScriptAsset}`.
 
 ```php
-use Andaniel05\ComposedViews\Asset\{StyleAsset, ScriptAsset};
+use GlueApps\ComposedViews\Asset\{StyleAsset, ScriptAsset};
 
 class App extends AbstractApp
 {
@@ -65,7 +65,7 @@ Como se comentó anteriormente, con un cuarto argumento de tipo *string* se podr
 
 ## 3. Conociendo los tipos de assets existentes. ##
 
-La siguiente tabla muestra las clases existentes en GluePHP para trabajar con los tipos de *assets* más comunes. Todas se encuentran definidas en el espacio de nombres `Andaniel05\ComposedViews\Asset`. La tabla muestra el tipo de elemento HTML que representa el *asset*, los grupos y atributos predefinidos además de un ejemplo de su vista. El símbolo `%data%` se corresponde con el valor especificado por el usuario como segundo argumento del constructor.
+La siguiente tabla muestra las clases existentes en GluePHP para trabajar con los tipos de *assets* más comunes. Todas se encuentran definidas en el espacio de nombres `GlueApps\ComposedViews\Asset`. La tabla muestra el tipo de elemento HTML que representa el *asset*, los grupos y atributos predefinidos además de un ejemplo de su vista. El símbolo `%data%` se corresponde con el valor especificado por el usuario como segundo argumento del constructor.
 
 Clase | Elemento | Atributos | Grupos | Vista
 -- | -- | -- | -- | --
@@ -77,7 +77,7 @@ ImportAsset | `link` | href="%data%", rel="import" | imports, uri | `<link href=
 
 ## 4. Editando los assets. ##
 
-La clase `Andaniel05\ComposedViews\HtmlElement\HtmlElement` se usa para generar la vista de un único elemento HTML. La misma solo se compone de cuatro datos que se corresponden con el tipo de elemento, los atributos, el contenido y la etiqueta de cierre. Todos esos se pueden editar a través de sus respectivos métodos de lectura y escritura. Dado que los *assets* son también instancias de esta clase su vista puede ser editada.
+La clase `GlueApps\ComposedViews\HtmlElement\HtmlElement` se usa para generar la vista de un único elemento HTML. La misma solo se compone de cuatro datos que se corresponden con el tipo de elemento, los atributos, el contenido y la etiqueta de cierre. Todos esos se pueden editar a través de sus respectivos métodos de lectura y escritura. Dado que los *assets* son también instancias de esta clase su vista puede ser editada.
 
 El siguiente ejemplo muestra como se añade un nuevo atributo a un *asset*.
 
@@ -160,9 +160,9 @@ El siguiente ejemplo provocará que en la app nunca se usen los *assets* que pos
 
 ```php
 
-use Andaniel05\ComposedViews\PageEvents;
-use Andaniel05\ComposedViews\Event\FilterAssetsEvent;
-use Andaniel05\ComposedViews\Asset\UriInterface;
+use GlueApps\ComposedViews\PageEvents;
+use GlueApps\ComposedViews\Event\FilterAssetsEvent;
+use GlueApps\ComposedViews\Asset\UriInterface;
 
 $app->on(PageEvents::FILTER_ASSETS, 'filterAssets');
 

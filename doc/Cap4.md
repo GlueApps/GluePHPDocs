@@ -8,7 +8,7 @@ Las acciones tienen un protagonismo esencial en el funcionamiento interno de las
 
 En este capítulo mostraremos la creación de acciones personalizadas y su forma de envío. Para ello vamos a desarrollar una aplicación compuesta por dos botones donde el primero mostrará el texto 'Alerta' mientras que el segundo 'Confirmación'. El funcionamiento consistirá en que cuando se haga clic en el botón 'Alerta' se muestre en el navegador un mensaje de alerta nativo y de igual forma, cuando se presione el botón 'Confirmación' el navegador mostrará un mensaje de confirmación nativo donde los textos de los mensajes en todos los casos serán aleatorios.
 
->En el archivo [app4.zip](https://github.com/andaniel05/GluePHP/raw/0.1a/doc/res/Cap4/app4.zip) encontrará resuelto el ejercicio de este capítulo.
+>En el archivo [app4.zip](https://github.com/GlueApps/GluePHPDocs/raw/0.1a/doc/res/Cap4/app4.zip) encontrará resuelto el ejercicio de este capítulo.
 
 ## 1. Definiendo la app. ##
 
@@ -69,12 +69,12 @@ Como puede ver, en las funciones anteriores se hace uso de la clase CustomAction
 
 ## 2. Creando la clase de la acción. ##
 
-Para crear un nuevo tipo de acción es necesario crear una clase que descienda de `Andaniel05\GluePHP\Action\AbstractAction` por lo que primeramente debemos declarar el uso de la misma al inicio del archivo *bootstrap.php*:
+Para crear un nuevo tipo de acción es necesario crear una clase que descienda de `GlueApps\GluePHP\Action\AbstractAction` por lo que primeramente debemos declarar el uso de la misma al inicio del archivo *bootstrap.php*:
 
 ```php
 
 // ...
-use Andaniel05\GluePHP\Action\AbstractAction;
+use GlueApps\GluePHP\Action\AbstractAction;
 
 ```
 
@@ -104,9 +104,9 @@ JAVASCRIPT;
 }
 ```
 
-En la clase `Andaniel05\GluePHP\Action\AbstractAction` existe un método estático y abstracto de nombre `handlerScript()` por lo que toda clase heredera está obligado a implementarlo. Este método debe devolver el fragmento de código JavaScript que será ejecutado en el navegador una vez que se reciba una acción de este tipo.
+En la clase `GlueApps\GluePHP\Action\AbstractAction` existe un método estático y abstracto de nombre `handlerScript()` por lo que toda clase heredera está obligado a implementarlo. Este método debe devolver el fragmento de código JavaScript que será ejecutado en el navegador una vez que se reciba una acción de este tipo.
 
-Al mirar el código JavaScript de nuestra clase puede notar que se hace uso de una variable de nombre `data` y puede notar también que sobre la misma se hace referencia a las propiedades `text` y `type`. Por otra parte, si mira el constructor de la clase puede comprobar que el constructor de la clase padre es invocado con un *array* que contiene dos valores indexados por las claves `text` y `type`. En la clase `Andaniel05\GluePHP\Action\AbstractAction` existe un atributo especial y protegido de nombre `$data` donde su valor se especifica a través del constructor de la misma. Cuando una acción es enviada, GluePHP hace una conversión automática del valor de este atributo y lo asigna a la variable `data` del código JavaScript donde la conversión tiene en cuenta los siguientes casos:
+Al mirar el código JavaScript de nuestra clase puede notar que se hace uso de una variable de nombre `data` y puede notar también que sobre la misma se hace referencia a las propiedades `text` y `type`. Por otra parte, si mira el constructor de la clase puede comprobar que el constructor de la clase padre es invocado con un *array* que contiene dos valores indexados por las claves `text` y `type`. En la clase `GlueApps\GluePHP\Action\AbstractAction` existe un atributo especial y protegido de nombre `$data` donde su valor se especifica a través del constructor de la misma. Cuando una acción es enviada, GluePHP hace una conversión automática del valor de este atributo y lo asigna a la variable `data` del código JavaScript donde la conversión tiene en cuenta los siguientes casos:
 
 - Cuando el tipo del atributo sea escalar la variable tomará un tipo similar pues los tipos escalares de PHP existen también en JavaScript.
 - Cuando el tipo del atributo sea un *array* tipo vector(solo índices numéricos y ordenados) el tipo de la variable será una instancia de la clase `Array`.

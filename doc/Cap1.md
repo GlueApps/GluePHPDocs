@@ -4,7 +4,7 @@ La mejor forma de comprender la filosofía de trabajo de GluePHP es usándolo en
 
 La aplicación estará compuesta por una caja de texto, una etiqueta y un botón. La lógica consistirá en que al hacer clic sobre el botón la etiqueta muestre un saludo con el nombre introducido por el usuario en el campo de texto.
 
->En el archivo [app1.zip](https://github.com/andaniel05/GluePHP/raw/0.1a/doc/res/Cap1/app1.zip) encontrará resuelto el ejercicio de este capítulo.
+>En el archivo [app1.zip](https://github.com/GlueApps/GluePHPDocs/raw/0.1a/doc/res/Cap1/app1.zip) encontrará resuelto el ejercicio de este capítulo.
 
 ## Introducción. ##
 
@@ -90,7 +90,7 @@ Cree un archivo de nombre *process.php* con el siguiente contenido:
 
 require_once 'bootstrap.php';
 
-use Andaniel05\GluePHP\Request\Request;
+use GlueApps\GluePHP\Request\Request;
 
 // Obtiene la instancia de la app persistida por el controlador de carga o por
 // el procesamiento anterior.
@@ -200,7 +200,7 @@ En este caso la lógica es bien sencilla. La línea `$label->setText('Hola ' . $
 
 ## 5. Creando la clase App. ##
 
-El código HTML de la página estará especificado en la clase 'App'. Como requisito obligatorio esta tiene que ser hija de la clase `Andaniel05\GluePHP\AbstractApp`.
+El código HTML de la página estará especificado en la clase 'App'. Como requisito obligatorio esta tiene que ser hija de la clase `GlueApps\GluePHP\AbstractApp`.
 
 Añada la declaración de la clase 'AbstractApp' al inicio del archivo *bootstrap.php*:
 
@@ -209,7 +209,7 @@ Añada la declaración de la clase 'AbstractApp' al inicio del archivo *bootstra
 
 require_once 'vendor/autoload.php';
 
-use Andaniel05\GluePHP\AbstractApp;
+use GlueApps\GluePHP\AbstractApp;
 
 // ...
 ```
@@ -243,7 +243,7 @@ Puede notar que el método `App::html()` devuelve un valor de tipo *string* que 
 
 El significado de la línea `{$this->renderSidebar('body')}` consiste en que en esa posición serán mostrados los componentes de la sección 'body' de la página.
 
-> En la clase `Andaniel05\GluePHP\AbstractApp` existe registrado por defecto la sección 'body' pero en próximos capítulos se mostrará la forma de especificar las secciones.
+> En la clase `GlueApps\GluePHP\AbstractApp` existe registrado por defecto la sección 'body' pero en próximos capítulos se mostrará la forma de especificar las secciones.
 
 Por otra parte hay que destacar también el significado de la línea `{$this->renderAssets('scripts')}` la cual provocará que en esa posición se muestren los recursos de tipos *scripts* de la página. Si esta línea es omitida el código HTML no contendrá las fuentes JavaScript necesarias para que la app pueda funcionar correctamente, por lo que mostrar los *assets* de este tipo tiene un carácter obligatorio. También más adelante profundizaremos en el tema de los *assets*.
 
@@ -253,21 +253,21 @@ Una vez llegado a este punto habremos terminado de desempeñarnos con el rol del
 
 Es en la creación de componentes donde GluePHP ofrece sus mayores bondades ya que el proceso de desarrollo se hace mayormente de manera declarativa.
 
-Para crear un componente es necesario crear una clase descendiente de `Andaniel05\GluePHP\Component\AbstractComponent` donde al igual que en la clase 'App', el código HTML o vista se especifica a través de su método `html()`. En el caso de los componentes, su código HTML soporta cierto marcado especial para especificar el comportamiento y/o función de ciertos elementos de la vista.
+Para crear un componente es necesario crear una clase descendiente de `GlueApps\GluePHP\Component\AbstractComponent` donde al igual que en la clase 'App', el código HTML o vista se especifica a través de su método `html()`. En el caso de los componentes, su código HTML soporta cierto marcado especial para especificar el comportamiento y/o función de ciertos elementos de la vista.
 
 Por cada instancia de componente presente en la app existirá una instancia equivalente en el *frontend*. Todos los atributos de la clase marcados con la anotación `@Glue` serán interpretados como *glue attributes* independientemente del tipo de visibilidad que posean. De esta forma se le indica a GluePHP que el atributo debe existir también en la instancia *frontend* y que, entre ambas, mantendrán un *Double Binding* sobre dicho atributo. Esto  quiere decir que al modificarse el valor en alguna de las instancias, ya sea *frontend* o *backend*, la otra será actualizada automáticamente.
 
 Por cada *glue attribute* la clase contendrá dos métodos dinámicos para las operaciones tipo *getters* y *setters* sobre el mismo. Los nombres de estos métodos cumplirán con el formato *camel case* y estarán constituidos por el propio nombre del atributo precedido por la palabra 'get' o 'set' según sea el caso. Por ejemplo, para un *glue attribute* llamado 'name' su método *getter* se llamará *getName* mientras que su *setter* será *setName*.
 
-Declare el uso de la clase `Andaniel05\GluePHP\Component\AbstractComponent` al inicio del archivo *bootstrap.php*:
+Declare el uso de la clase `GlueApps\GluePHP\Component\AbstractComponent` al inicio del archivo *bootstrap.php*:
 
 ```php
 <?php
 
 require_once 'vendor/autoload.php';
 
-use Andaniel05\GluePHP\AbstractApp;
-use Andaniel05\GluePHP\Component\AbstractComponent;
+use GlueApps\GluePHP\AbstractApp;
+use GlueApps\GluePHP\Component\AbstractComponent;
 
 // ...
 ```

@@ -67,8 +67,8 @@ Cuando necesite clonar un componente **se tiene que hacer** de la siguiente mane
 En una *glue app*, el árbol de componentes principal lo constituye el de las páginas ya que son estas quienes contienen a los componentes. Cuando en cualquier parte del mismo, se produzca tanto una inserción como alguna eliminación, se producirá sobre la página un evento antes y otro después de la respectiva operación. Estos eventos son usados internamente por GluePHP, pero adicionalmente pueden ser usados por los usuarios para incluir cualquier tipo de lógica.
 
 ```php
-use Andaniel05\ComposedViews\PageEvents;
-use Andaniel05\ComposedViews\Event\{BeforeInsertionEvent, AfterInsertionEvent, BeforeDeletionEvent, AfterDeletionEvent};
+use GlueApps\ComposedViews\PageEvents;
+use GlueApps\ComposedViews\Event\{BeforeInsertionEvent, AfterInsertionEvent, BeforeDeletionEvent, AfterDeletionEvent};
 
 $app->on(PageEvents::BEFORE_INSERTION, 'beforeInsertionHandler');
 $app->on(PageEvents::AFTER_INSERTION, 'afterInsertionHandler');

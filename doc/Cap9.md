@@ -2,7 +2,7 @@
 
 En el capítulo 1 se mostró la forma de crear tipos de componentes para GluePHP. Recordemos que la tarea consiste de los siguientes pasos:
 
-1. Crear una clase descendiente de `Andaniel05\GluePHP\Component\AbstractComponent`.
+1. Crear una clase descendiente de `GlueApps\GluePHP\Component\AbstractComponent`.
 2. Declarar los *glue attributes* especificando la anotación `@Glue` sobre los respectivos atributos de la clase.
 3. Declarar funcionalidades especiales(*binding* y emisión de eventos) de ciertos elementos de la vista.
 
@@ -40,11 +40,11 @@ class MyComponent extends AbstractComponent
 
 Cuando en una etapa de procesamiento se produce una actualización de un componente en el servidor, lo que se hace es invocar a los respectivos métodos *setters* con los nuevos valores. Estas invocaciones se hacen siguiendo el orden en el que se produjeron los cambios de los respectivos *glue attributes* en el navegador. Dado que por lo general, este orden de ocurrencia no sigue un patrón determinado, existirá una limitación si se necesita redefinir un método *setter* donde su lógica necesite ser ejecutada siempre después de la actualización de otro *glue attribute*.
 
-Para solucionar esta limitación existen los eventos 'beforeUpdate' y 'afterUpdate' de los componentes. Como lo describen sus nombres, el primero se produce antes de realizar la actualización, mientras que el segundo después de efectuar la misma. Para ello, se deben definir métodos con igual nombre en la clase del componente donde se puede especificar la lógica deseada. Como puede ver en el siguiente fragmento, ambos métodos recibirán un objeto del tipo `Andaniel05\GluePHP\Update\UpdateInterface` a través del cuál se podrá conocer toda la información de la actualización.
+Para solucionar esta limitación existen los eventos 'beforeUpdate' y 'afterUpdate' de los componentes. Como lo describen sus nombres, el primero se produce antes de realizar la actualización, mientras que el segundo después de efectuar la misma. Para ello, se deben definir métodos con igual nombre en la clase del componente donde se puede especificar la lógica deseada. Como puede ver en el siguiente fragmento, ambos métodos recibirán un objeto del tipo `GlueApps\GluePHP\Update\UpdateInterface` a través del cuál se podrá conocer toda la información de la actualización.
 
 ```php
 
-use Andaniel05\GluePHP\Update\UpdateInterface;
+use GlueApps\GluePHP\Update\UpdateInterface;
 
 class MyComponent extends AbstractComponent
 {
@@ -176,7 +176,7 @@ El siguiente ejemplo muestra como implementar esta función. En el mismo se ha d
 
 ```php
 
-use function Andaniel05\GluePHP\jsVal;
+use function GlueApps\GluePHP\jsVal;
 
 class MyComponent extends AbstractComponent
 {
@@ -221,18 +221,18 @@ Cuando en el capítulo 1 nos desempeñamos con el rol de desarrollador de compon
 
 Cuando en el *frontend* se instancia un componente, inmediatamente se aplican sobre el mismo varios tipos de procesadores. Un procesador no es más que una determinada lógica JavaScript que se aplica sobre un componente *frontend* recién creado.
 
-No todos los componentes se procesan de la misma manera, y es en su clase PHP donde se especifica cuales son los procesadores que se aplican para un determinado tipo. Esta especificación se hace a través del método `processors(): array` el cual devuelve un *array* con los nombres de los  mismos. En la clase `Andaniel05\GluePHP\Component\AbstractComponent` existen predefinidos una serie de procesadores, y es gracias a esto, que hasta el momento no hemos tenido que especificar ningún procesador para los tipos de componentes que hemos creado. Seguidamente se muestra un fragmento de la clase `Andaniel05\GluePHP\Component\AbstractComponent` para mostrarle todos los procesadores registrados por defecto.
+No todos los componentes se procesan de la misma manera, y es en su clase PHP donde se especifica cuales son los procesadores que se aplican para un determinado tipo. Esta especificación se hace a través del método `processors(): array` el cual devuelve un *array* con los nombres de los  mismos. En la clase `GlueApps\GluePHP\Component\AbstractComponent` existen predefinidos una serie de procesadores, y es gracias a esto, que hasta el momento no hemos tenido que especificar ningún procesador para los tipos de componentes que hemos creado. Seguidamente se muestra un fragmento de la clase `GlueApps\GluePHP\Component\AbstractComponent` para mostrarle todos los procesadores registrados por defecto.
 
 ```php
 
-namespace Andaniel05\GluePHP\Component;
+namespace GlueApps\GluePHP\Component;
 
 // ...
-use Andaniel05\GluePHP\Processor\BindValueProcessor;
-use Andaniel05\GluePHP\Processor\BindEventsProcessor;
-use Andaniel05\GluePHP\Processor\BindAttributesProcessor;
-use Andaniel05\GluePHP\Processor\BindHtmlProcessor;
-use Andaniel05\GluePHP\Processor\ShortEventsProcessor;
+use GlueApps\GluePHP\Processor\BindValueProcessor;
+use GlueApps\GluePHP\Processor\BindEventsProcessor;
+use GlueApps\GluePHP\Processor\BindAttributesProcessor;
+use GlueApps\GluePHP\Processor\BindHtmlProcessor;
+use GlueApps\GluePHP\Processor\ShortEventsProcessor;
 // ...
 
 abstract class AbstractComponent extends AbstractViewComponent

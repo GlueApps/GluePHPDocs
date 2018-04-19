@@ -1,6 +1,6 @@
 # Capítulo 6. Trabajando con sidebars. #
 
-Como vimos en el capítulo 1, un *sidebar* no es más que una sección dentro del código HTML o vista de la página donde se muestran las vistas de los componentes insertados en la misma. Cuando creamos la clase App mostramos que la forma de mostrar un *sidebar* era a través del método `renderSidebar(string $id)`. En aquel momento comentamos que en la clase `Andaniel05\GluePHP\AbstractApp` existía por defecto un único *sidebar* de nombre 'body' y que más adelante se mostraría la forma de crearlos.
+Como vimos en el capítulo 1, un *sidebar* no es más que una sección dentro del código HTML o vista de la página donde se muestran las vistas de los componentes insertados en la misma. Cuando creamos la clase App mostramos que la forma de mostrar un *sidebar* era a través del método `renderSidebar(string $id)`. En aquel momento comentamos que en la clase `GlueApps\GluePHP\AbstractApp` existía por defecto un único *sidebar* de nombre 'body' y que más adelante se mostraría la forma de crearlos.
 
 La manera de crear los *sidebars* de una página es muy sencilla. Para ello solo hay que crear un método público llamado 'sidebars' y hacerlo devolver un *array* donde sus elementos se corresponderá con los nombres de los *sidebars* que existirán en la página.
 

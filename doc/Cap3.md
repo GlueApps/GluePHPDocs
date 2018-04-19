@@ -4,7 +4,7 @@ La composición de las aplicaciones hechas con GluePHP tienen un comportamiento 
 
 Para mostrarle este comportamiento vamos a desarrollar una aplicación muy similar a la anterior solo que en este caso estará compuesta solo por una caja de texto y un botón. La lógica de la misma consistirá en que al presionar el botón se insertará un nuevo botón con el texto introducido por el usuario en la caja de texto. Por otra parte, cuando este nuevo botón sea presionado deberá ser eliminado completamente.
 
->En el archivo [app3.zip](https://github.com/andaniel05/GluePHP/raw/0.1a/doc/res/Cap3/app3.zip) encontrará resuelto el ejercicio de este capítulo.
+>En el archivo [app3.zip](https://github.com/GlueApps/GluePHPDocs/raw/0.1a/doc/res/Cap3/app3.zip) encontrará resuelto el ejercicio de este capítulo.
 
 ## 1. Definiendo la app. ##
 
