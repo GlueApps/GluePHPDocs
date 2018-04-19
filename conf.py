@@ -30,8 +30,8 @@ source_parsers = {
 # -- Project information -----------------------------------------------------
 
 project = 'GluePHP'
-copyright = '2018, Andy Daniel Navarro Taño'
-author = 'Andy Daniel Navarro Taño'
+copyright = '2018, Andy Daniel Navarro Ta\u00F1o'
+author = 'Andy Daniel Navarro Ta\u00F1o'
 
 # The short X.Y version
 version = ''
@@ -138,7 +138,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'GluePHP.tex', 'GluePHP Documentation',
-     'Andy Daniel Navarro Taño', 'manual'),
+     'Andy Daniel Navarro Ta\u00F1o', 'manual'),
 ]
 
 
