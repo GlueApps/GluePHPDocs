@@ -29,8 +29,8 @@ Cree un archivo de nombre *composer.json* con el siguiente contenido:
 
     {
         "require": {
-            "andaniel05/composed-views": "dev-0.1a",
-            "andaniel05/glue-php": "dev-0.1a"
+            "glueapps/composed-views": "dev-0.1a",
+            "glueapps/glue-php": "dev-0.1a"
         }
     }
 
